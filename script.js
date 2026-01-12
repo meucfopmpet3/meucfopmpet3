@@ -130,7 +130,7 @@ const backToGamesButton = document.getElementById('back-to-games');
 // =======================================================
 // 3. DADOS ESTÁTICOS
 // =======================================================
-const COURSE_START_DATE = new Date("2025-05-26T00:00:00");
+const COURSE_START_DATE = new Date("2026-01-05T00:00:00");
 const subjectList = [
   "Sistema de Segurança Pública",
   "Teoria Geral da Administração",
@@ -575,18 +575,25 @@ function updateTimeProgress() {
   const today = new Date();
   const graduationDate = new Date('2027-01-05T00:00:00');
   const totalDays = 365;
+  
+  // Calcula dias restantes
   const daysLeft = Math.ceil((graduationDate - today) / (1000 * 60 * 60 * 24));
+  
+  // Calcula dias passados (Aqui usará a nova COURSE_START_DATE)
   const daysPassed = Math.max(
     0,
     Math.floor((today - COURSE_START_DATE) / (1000 * 60 * 60 * 24))
   );
+
   daysLeftEl.textContent = daysLeft > 0 ? daysLeft : 0;
   daysPassedEl.textContent = daysPassed >= 0 ? daysPassed : 0;
+
+  // Cálculo da porcentagem (7 dias / 365 ≈ 1.9%)
   const percentage = Math.min(100, (daysPassed / totalDays) * 100);
+  
   courseProgressBar.style.width = `${percentage}%`;
-  coursePercentageEl.innerHTML = `<span>${percentage.toFixed(
-    1
-  )}%</span> do curso concluído`;
+  coursePercentageEl.innerHTML = `<span>${percentage.toFixed(1)}%</span> do curso concluído`;
+  
   checkAchievements("time_update", { percentage, days_left: daysLeft });
 }
 
@@ -658,6 +665,7 @@ async function renderDocuments(searchTerm = "") {
 }
 
 function renderGrades() {
+  const grades = userState.grades || {};
   gradesContainer.innerHTML = "";
   subjectList.sort().forEach((subject) => {
     const value = userState.grades[subject] || 0;
@@ -1409,6 +1417,10 @@ function handlePageNavigation(e) {
     sidebar.classList.remove("open");
     sidebarOverlay.classList.add("hidden");
   }
+}
+
+function renderGames() {
+    console.log("Sistema de jogos ainda não implementado para a T3.");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
