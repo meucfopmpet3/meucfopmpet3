@@ -1591,52 +1591,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =======================================================
   // 7. EVENT LISTENERS PARA O NOVO RANKING
   // =======================================================
-  saveBattalionsButton.addEventListener("click", async () => {
-    const {
-      data: { user },
-    } = await sb.auth.getUser();
-    if (!user) return;
-
-    const updates = {
-      batalhao_1: battalionSelect1.value || null,
-      batalhao_2: battalionSelect2.value || null,
-      batalhao_3: battalionSelect3.value || null,
-    };
-
-    const { error } = await sb
-      .from("profiles")
-      .update(updates)
-      .eq("id", user.id);
-
-    if (error) {
-      rankingMessage.textContent = "Erro ao salvar.";
-      rankingMessage.style.color = "var(--sl-error)";
-      console.error("Erro ao salvar batalhões:", error);
-    } else {
-      rankingMessage.textContent = "Batalhões salvos!";
-      rankingMessage.style.color = "var(--sl-success)";
-      // Re-renderiza o ranking de batalhões se estiver ativo
-      if (showBattalionRankingButton.classList.contains("active")) {
-        renderBattalionRankings();
-      }
-    }
-    setTimeout(() => {
-      rankingMessage.textContent = "";
-    }, 3000);
-  });
-
-  showGlobalRankingButton.addEventListener("click", () => {
-    showGlobalRankingButton.classList.add("active");
-    showBattalionRankingButton.classList.remove("active");
-    renderRanking();
-  });
-
-  showBattalionRankingButton.addEventListener("click", () => {
-    showBattalionRankingButton.classList.add("active");
-    showGlobalRankingButton.classList.remove("active");
-    renderRanking();
-  });
-// --- Listeners para o Modal de Progresso do Curso ---
+  // --- Listeners para o Modal de Progresso do Curso ---
         const showProgressModalButton = document.getElementById('show-progress-modal-button');
         const courseProgressModal = document.getElementById('course-progress-modal');
         const courseProgressModalClose = document.getElementById('course-progress-modal-close');
