@@ -130,7 +130,7 @@ const backToGamesButton = document.getElementById('back-to-games');
 // =======================================================
 // 3. DADOS ESTÁTICOS
 // =======================================================
-const COURSE_START_DATE = new Date("2026-01-12T00:00:00");
+const COURSE_START_DATE = new Date("2026-01-04T00:00:00");
 const subjectList = [
   "Sistema de Segurança Pública",
   "Teoria Geral da Administração",
