@@ -573,7 +573,7 @@ function renderDashboard() {
 
 function updateTimeProgress() {
   const today = new Date();
-  const graduationDate = new Date("2026-05-26T00:00:00");
+  const graduationDate = new Date("2027-01-04T00:00:00");
   const totalDays = 365;
   const daysLeft = Math.ceil((graduationDate - today) / (1000 * 60 * 60 * 24));
   const daysPassed = Math.max(
